@@ -7,6 +7,7 @@ import { GlobalStyle } from 'components/GlobalStyle';
 
 const theme = {
   colors: {
+    box_color: 'lightyellow', 
     black: '#212121',
     green: 'green',
     blue: 'blue',

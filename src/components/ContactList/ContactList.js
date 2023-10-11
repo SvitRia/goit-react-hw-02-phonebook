@@ -1,28 +1,19 @@
 import { Component } from 'react'
-
-const ComtactItem = ({ contactItem: { name, number, id } }, onDelete) => {
-    return (
-        <div> 
-            <span>{ name }</span>
-            <span>{ number }</span>
-            <button onClick={() => onDelete(id)}>Delete</button>
-      </div>
-    )
-
-}
+import { ContactItem } from 'components/ContactItem/ContactItem';
+import { List } from './ContactList.styled';
 
 export class ContactList extends Component  {
     render() {
          const { contacts, onDelete } = this.props;
         return (
             <div>
-                <ul>
-                    {contacts.map((contact) => (<li key={contact.id}> <ComtactItem
+                <List>
+                    {contacts.map((contact) => (<li key={contact.id}> <ContactItem
                         contactItem={contact}
-                        onDelete={onDelete}/>
+                        onDeleteContact={onDelete}/>
                     </li>) 
                 )}
-                </ul>
+                </List>
             </div>
         )
     }

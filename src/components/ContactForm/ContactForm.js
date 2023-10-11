@@ -1,11 +1,11 @@
-import { Formik, Field } from 'formik';
+import { Formik } from 'formik';
 import * as Yup from 'yup';
 import "yup-phone"; 
-import { ErrMessage, StyledForm } from './ContactForm.styled';
+import { ErrMessage, StyledForm, StyledField, Label, BtnAdd } from './ContactForm.styled';
 
 const quizSchema = Yup.object().shape({
   name: Yup.string().min(3, 'Too short!').required('This field is required!'),
-  number: Yup.string().min(8, 'Too short!').required('This field is required!')
+    number: Yup.string().matches(/^\d{3}-\d{2}-\d{2}$/, 'Must be in format: 000-00-00').required('This field is required!')
   
 });
 
@@ -14,7 +14,7 @@ const quizSchema = Yup.object().shape({
     <Formik
       initialValues={{
         name: '',
-        number: 0,
+        number: '',
       }}
       validationSchema={quizSchema}
       onSubmit={(values, actions) => {
@@ -23,21 +23,21 @@ const quizSchema = Yup.object().shape({
       }}
     >
           <StyledForm>
-               <h1>Phonebook</h1>
+              
         
-              <label>
+              <Label>
                 Name
-          <Field type="text" name="name" placeholder=" " />
+          <StyledField type="text" name="name" placeholder=" " />
           <ErrMessage name="name" component="div" />
-              </label>
+              </Label>
 
-             <label>
-              Number
-          <Field type="text" name="number" />
+             <Label>
+              Number (000-00-00)
+          <StyledField type="text" name="number" />
           <ErrMessage name="number" component="div" />
-            </label>
+            </Label>
 
-            <button type="submit">Add contact</button>
+            <BtnAdd type="submit">Add contact</BtnAdd>
       </StyledForm>
     </Formik>
   );
